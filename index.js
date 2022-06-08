@@ -9,25 +9,29 @@ const dates = [
 
 // TODO: Buatlah fungsi createDate
 const createDate = (array, index) => {
-
-  if (index == null ) {
+  if (index == null) {
+    let dateArray = [];
     let dateFix = [];
 
-    for (const date of array) {
-      const epochNotString = Date.parse(date);
-      const epoch = epochNotString.toString();
-      dateFix.push(epoch);
+    for (let date of array) {
+      let epochNotString = Date.parse(date);
+      epochNotString /= 1000;
+      dateArray.push(epochNotString);
     }
 
-    return dateFix.join("-");
+    let sortParseDate = dateArray.sort((a, b) => a - b);
 
+    for (const date of sortParseDate) {
+      const epoch = date.toString();
+      dateFix.push(epoch);
+    }
+    return dateFix.join("-");
   } else {
-    // return `${array}[${index}]`
-    const epochNotString = Date.parse(`${array[index]}`);
+    let epochNotString = Date.parse(`${array[index]}`);
+    epochNotString /= 1000;
     const epoch = epochNotString.toString();
     return epoch;
   }
-  
 };
 
 // ! JANGAN DIMODIFIKASI
