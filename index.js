@@ -8,7 +8,27 @@ const dates = [
 ];
 
 // TODO: Buatlah fungsi createDate
-const createDate = null;
+const createDate = (array, index) => {
+
+  if (index == null ) {
+    let dateFix = [];
+
+    for (const date of array) {
+      const epochNotString = Date.parse(date);
+      const epoch = epochNotString.toString();
+      dateFix.push(epoch);
+    }
+
+    return dateFix.join("-");
+
+  } else {
+    // return `${array}[${index}]`
+    const epochNotString = Date.parse(`${array[index]}`);
+    const epoch = epochNotString.toString();
+    return epoch;
+  }
+  
+};
 
 // ! JANGAN DIMODIFIKASI
 (() => {
