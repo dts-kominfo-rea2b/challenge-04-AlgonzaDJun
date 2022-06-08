@@ -10,23 +10,28 @@ const dates = [
 // TODO: Buatlah fungsi createDate
 const createDate = (array, index) => {
   if (index == null) {
+    // membuat array kosong
     let dateArray = [];
     let dateFix = [];
 
+    // looping di dalam array dan parse tanggal
     for (let date of array) {
       let epochNotString = Date.parse(date);
       epochNotString /= 1000;
-      dateArray.push(epochNotString);
+      dateArray.push(epochNotString); //memasukkan array yang sudah dibagi 1000 ke array kosong
     }
 
+    // men short array dari terkecil ke terbesar
     let sortParseDate = dateArray.sort((a, b) => a - b);
 
+    // mengubah tiap tanggal epoch menjadi string
     for (const date of sortParseDate) {
       const epoch = date.toString();
-      dateFix.push(epoch);
+      dateFix.push(epoch); //memasukkan array ke array yang kosong
     }
-    return dateFix.join("-");
+    return dateFix.join("-"); //mengembalikan string dengan tambahan "-"
   } else {
+    //jika parameter kedua tidak null
     let epochNotString = Date.parse(`${array[index]}`);
     epochNotString /= 1000;
     const epoch = epochNotString.toString();
