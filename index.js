@@ -12,28 +12,22 @@ const createDate = (array, index) => {
   if (index == null) {
     // membuat array kosong
     let dateArray = [];
-    let dateFix = [];
 
     // looping di dalam array dan parse tanggal
-    for (let date of array) {
-      let epochNotString = Date.parse(date);
-      epochNotString /= 1000;
-      dateArray.push(epochNotString); //memasukkan array yang sudah dibagi 1000 ke array kosong
+    for (const date of array) {
+      const epochNotString = new Date(date).getTime() / 1000;
+      epochNotString.toString();
+      //memasukkan array yang sudah dibagi 1000 ke array kosong
+      dateArray.push(epochNotString);
     }
-
-    // men short array dari terkecil ke terbesar
-    let sortParseDate = dateArray.sort((a, b) => a - b);
-
-    // mengubah tiap tanggal epoch menjadi string
-    for (const date of sortParseDate) {
-      const epoch = date.toString();
-      dateFix.push(epoch); //memasukkan array ke array yang kosong
-    }
-    return dateFix.join("-"); //mengembalikan string dengan tambahan "-"
+    // men-short array dari terkecil ke terbesar
+    dateArray.sort((a, b) => a - b);
+    //mengembalikan string dengan tambahan "-"
+    return dateArray.join("-");
   } else {
     //jika parameter kedua tidak null
-    let epochNotString = Date.parse(`${array[index]}`);
-    epochNotString /= 1000;
+    const epochNotString = new Date(array[index]).getTime() / 1000;
+    // mengubah ke string dan return
     const epoch = epochNotString.toString();
     return epoch;
   }
